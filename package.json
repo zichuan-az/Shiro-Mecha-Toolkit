@@ -1,0 +1,112 @@
+{
+  "name": "shiro-mecha-toolkit",
+  "productName": "Shiro Mecha Toolkit",
+  "version": "1.2.0",
+  "description": "Shiro Mecha Toolkit (白机甲工坊) — a cross-platform desktop toolkit for Steam power users: network accelerator, hosts manager, Steam tools, game library, download manager and library/patch workbench.",
+  "author": {
+    "name": "岚川怀瑾",
+    "email": "lchuan@example.com"
+  },
+  "license": "MIT",
+  "private": true,
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "typecheck": "tsc -p tsconfig.app.json --noEmit",
+    "start": "electron .",
+    "dev:electron": "electron .",
+    "dist": "vite build && electron-builder",
+    "dist:win": "vite build && electron-builder --win",
+    "dist:linux": "vite build && electron-builder --linux",
+    "dist:mac": "vite build && electron-builder --mac"
+  },
+  "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-progress": "^1.1.7",
+    "@radix-ui/react-switch": "^1.2.6",
+    "@radix-ui/react-tabs": "^1.1.13",
+    "@radix-ui/react-tooltip": "^1.2.8",
+    "adm-zip": "^0.6.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.38.0",
+    "lucide-react": "^1.8.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "tailwind-merge": "^3.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.12.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.5",
+    "@vitejs/plugin-react": "^5.0.4",
+    "autoprefixer": "^10.5.0",
+    "electron": "^31.7.7",
+    "electron-builder": "^24.13.3",
+    "postcss": "^8.5.10",
+    "tailwindcss": "^3.4.19",
+    "typescript": "^5.9.3",
+    "vite": "^6.3.5"
+  },
+  "build": {
+    "appId": "io.github.lanchuanhuajin.shiro-mecha-toolkit",
+    "productName": "ShiroMechaToolkit",
+    "copyright": "Copyright (c) 2025 岚川怀瑾 (LanChuanHuaJin)",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json",
+      "!**/*.map"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "ShiroMechaToolkit",
+      "artifactName": "ShiroMechaToolkit-Setup-${version}-x64.${ext}"
+    },
+    "portable": {
+      "artifactName": "ShiroMechaToolkit-Portable-${version}-x64.${ext}"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Utility",
+      "icon": "build/icon.png",
+      "artifactName": "ShiroMechaToolkit-${version}-x86_64.${ext}"
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "category": "public.app-category.utilities",
+      "icon": "build/icon.png",
+      "artifactName": "ShiroMechaToolkit-${version}-${arch}.${ext}"
+    }
+  }
+}
